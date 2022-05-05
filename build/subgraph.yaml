@@ -1,12 +1,12 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: near
     name: Ejemplo
     network: near-testnet
     source:
-      account: "dev-1651690260778-26836987336979"
+      account: dev-1651690260778-26836987336979
       startBlock: 89101209
     mapping:
       apiVersion: 0.0.6
@@ -15,4 +15,4 @@ dataSources:
         - ExampleEntity
       receiptHandlers:
         - handler: handleReceipt
-      file: ./src/mapping.ts
+      file: Ejemplo/Ejemplo.wasm
