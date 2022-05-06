@@ -11,30 +11,32 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ExampleEntity extends Entity {
+export class Product extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("block", Value.fromBytes(Bytes.empty()));
-    this.set("count", Value.fromBigInt(BigInt.zero()));
+    this.set("name", Value.fromString(""));
+    this.set("price", Value.fromBigInt(BigInt.zero()));
+    this.set("stock", Value.fromBigInt(BigInt.zero()));
+    this.set("enabled", Value.fromBoolean(false));
   }
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ExampleEntity entity without an ID");
+    assert(id != null, "Cannot save Product entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save ExampleEntity entity with non-string ID. " +
+        "Cannot save Product entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("ExampleEntity", id.toString(), this);
+      store.set("Product", id.toString(), this);
     }
   }
 
-  static load(id: string): ExampleEntity | null {
-    return changetype<ExampleEntity | null>(store.get("ExampleEntity", id));
+  static load(id: string): Product | null {
+    return changetype<Product | null>(store.get("Product", id));
   }
 
   get id(): string {
@@ -46,21 +48,39 @@ export class ExampleEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get block(): Bytes {
-    let value = this.get("block");
-    return value!.toBytes();
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
   }
 
-  set block(value: Bytes) {
-    this.set("block", Value.fromBytes(value));
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
+  get price(): BigInt {
+    let value = this.get("price");
     return value!.toBigInt();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
+  }
+
+  get stock(): BigInt {
+    let value = this.get("stock");
+    return value!.toBigInt();
+  }
+
+  set stock(value: BigInt) {
+    this.set("stock", Value.fromBigInt(value));
+  }
+
+  get enabled(): boolean {
+    let value = this.get("enabled");
+    return value!.toBoolean();
+  }
+
+  set enabled(value: boolean) {
+    this.set("enabled", Value.fromBoolean(value));
   }
 }

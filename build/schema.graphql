@@ -1,5 +1,7 @@
-type ExampleEntity @entity {
+type Product @entity {
   id: ID!
-  block: Bytes!
-  count: BigInt!
+  name: String!
+  price: BigInt!
+  stock: BigInt!
+  enabled: Boolean!
 }

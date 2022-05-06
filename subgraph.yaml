@@ -6,13 +6,13 @@ dataSources:
     name: Ejemplo
     network: near-testnet
     source:
-      account: "dev-1651690260778-26836987336979"
-      startBlock: 89101209
+      account: "dev-1651864499848-99321882647793"
+      startBlock: 89253965
     mapping:
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - ExampleEntity
+        - Product
       receiptHandlers:
         - handler: handleReceipt
       file: ./src/mapping.ts
